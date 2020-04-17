@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import time
 
 
-#===============文件夹设置===================
+#===============Folder settings===================
 CH=np.load("../Data/#64_b64_100000_challenge_8XOR.npy")
 RSP=np.load("../Data/#64_b64_100000_response.npy")
 
@@ -12,17 +12,14 @@ print(np.shape(CH))
 print(CH)
 print(np.shape(RSP))
 
-
-
-
-#==================参数设置==================
+#==================parameter settings==================
 NUM_PUF=1
 NUM_CHBIT=64
 NUM_CRP=100000
 
-#=============生成测试集和训练集===============
+#=============Generate test set and training set===============
 
-#将challenges做处理提取出特征
+#Process the challenges to extract features
 X_train=CH
 temp=1-2*X_train
 temp01 = np.array([np.prod(temp[:, i:], 1) for i in range(NUM_CHBIT)]).transpose()
@@ -30,11 +27,11 @@ temp02=-temp01
 
 
 
-#==================数据转换==================
+#==================Data expansion==================
 
 newChallenge=np.zeros([len(CH)*4,len(CH[0])])
 
-#将数据进行扩展成64x2x2的数据
+#Expand data to 64x2x2 data
 for i in range(len(CH)):
     newChallenge[i*4]=temp01[i]
     newChallenge[i*4+1]=temp02[i]
