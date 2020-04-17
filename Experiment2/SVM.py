@@ -5,7 +5,7 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 
 
-#===============文件夹设置===================
+#===============Folder settings===================
 CH=np.load("../data/#64_b64_100000_challenge_8XOR.npy")
 RSP=np.load('../data/#64_b64_100000_response_8XOR.npy')
 
@@ -14,19 +14,19 @@ print(CH)
 print(np.shape(RSP))
 
 
-#==================参数设置==================
+#==================parameter settings==================
 NUM_PUF=1
 NUM_CHBIT=64
 NUM_TRAIN = 5000
 
 ans = []
 for puf in range(64):
-#=============生成测试集和训练集==============
-#将challenges做处理提取出特征
+#=============Generate test set and training set==============
+#Process the challenges to extract features
 
-    tf.reset_default_graph()  # 重置默认图
-    graph = tf.Graph()        # 新建空白图
-    with graph.as_default() as g:   # 将新建的图作为默认图
+    tf.reset_default_graph()  # Reset the default image
+    graph = tf.Graph()        # New blank image
+    with graph.as_default() as g:   # Use the newly created image as the default image
         with tf.Session(graph=g):
             X_train=CH
             temp=1-2*X_train
@@ -74,7 +74,7 @@ for puf in range(64):
                     y_pred_,y_pred1_, w = sess.run([y_pred,y_pred1,W], feed_dict={x: x_train, y:y_train})
                     if i%50 ==0:
                         loss_ = sess.run(loss, feed_dict={x: x_train, y:y_train})
-                        #print('经过%d轮训练cost为：' % (int(i) / 50 + 1),loss_)
+                        #print('After %d times training, the cost is：' % (int(i) / 50 + 1),loss_)
                         #result= sess.run(merged, feed_dict={x: x_train, y:y_train})
                         #writer.add_summary(result, i)
                         pred = tf.matmul(x_test, W) +b
@@ -84,7 +84,7 @@ for puf in range(64):
                         #print(a)
                         maxx = max(maxx , a )
                 ans.append(maxx)
-            print("PUF",puf,"的准确率：",maxx)
+            print("PUF",puf,"accuracy rate is：",maxx)
 
 print(ans)
 print(sum(ans)/64.0)
