@@ -7,13 +7,9 @@ RSP=np.asarray(RSP,int)
 
 print(CH)
 
-
 Numbit=64
 NUM_PUF=64
 NumKey=32
-
-
-
 
 NUM_CRP=100000
 
@@ -24,8 +20,6 @@ key=np.random.randint(0,2,[NumKey,Numbit])
 print(key)
 np.save("../data/#"+ str(NumKey) +"key",key)
 #=========================================
-
-
 
 
 #===================obfuscate challenge and response==================
