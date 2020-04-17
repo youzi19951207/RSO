@@ -4,12 +4,12 @@ NUM_PUF=64
 NUM_CHBIT=64
 NUM_CRP=100000
 
-FILE_DATA="D:/万露的实验/data/#64_b64.txt"
+FILE_DATA="D:/data/#64_b64.txt"
 
 
 
 
-#===========存储每一个stage的4个延迟参数===========
+#===========Store 4 delay parameters for each stage===========
 DATA_p=np.zeros((NUM_PUF,NUM_CHBIT))
 DATA_q=np.zeros((NUM_PUF,NUM_CHBIT))
 DATA_r=np.zeros((NUM_PUF,NUM_CHBIT))
@@ -24,12 +24,12 @@ for i in range(NUM_PUF):
         DATA_s[i,j]=float(f.readline().strip())
 
 
-#===========产生Challenges============
+#===========Generate Challenges============
 CH=np.random.randint(0,2,(NUM_CRP,NUM_CHBIT))
 
 # CH=np.load("D:/Data64_LFSR/#1_b64_10000_challenge.npy")
 
-#=============产生Response====================
+#=============Generate Response====================
 RSP=np.zeros((NUM_PUF,NUM_CRP))
 
 for f in range(NUM_PUF):
@@ -61,7 +61,7 @@ for f in range(NUM_PUF):
             RSP[f,c]=1
             RSP[f,c]=int(RSP[f, c])
 
-#===============将CRP用数组CRP数组保存============
+#===============Save CRP with array CRP array============
 # CRP=np.zeros((NUM_CRP,NUM_CHBIT+NUM_PUF))
 # for i in range(NUM_CRP):
 #     for j in range(NUM_CHBIT):
@@ -70,7 +70,7 @@ for f in range(NUM_PUF):
 
 
 
-#===========将文件保存至文件夹===========
+#===========Save file to folder===========
 
 # for f in range(NUM_PUF):
 #     file_crp='G:/Data/newData32/#32_b32_10000.crp'
@@ -83,11 +83,11 @@ for f in range(NUM_PUF):
 #         fw.write('\n')
 #     fw.close()
 
-#==================二进制保存===========
+#==================Binary save===========
 print(CH)
-np.save("D:/万露的实验/data/#64_b64_100000_challenge",CH)
+np.save("D:/data/#64_b64_100000_challenge",CH)
 print(RSP)
-np.save("D:/万露的实验/data/#64_b64_100000_response",RSP)
+np.save("D:/data/#64_b64_100000_response",RSP)
 print(np.shape(CH))
 print(np.shape(RSP))
 
