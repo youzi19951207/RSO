@@ -1,4 +1,3 @@
-from D:/学长论文/DMOS/DMOS 实验/万露的实验2/CMA import cma
 import cma
 import numpy as np
 
